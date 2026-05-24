@@ -20,7 +20,8 @@ By the end of Week 1 you should be able to:
 ---
 
 Primary Reference https://web.stanford.edu/~jurafsky/slp3/slides/tokens_jan26.pdf / https://web.stanford.edu/~jurafsky/slp3/2.pdf
-you can google a video of any topic if you have any doubt otherwise it is very intuitive
+you can google a video of any topic if you have any doubt otherwise it is very intuitive,
+I will keep updating resources for next day in this file throughout the week
 
 ## Day 1: NLP Introduction + Words and Corpora
 
