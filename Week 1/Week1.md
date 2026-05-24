@@ -15,6 +15,7 @@
 
 Primary Reference https://web.stanford.edu/~jurafsky/slp3/slides/tokens_jan26.pdf / https://web.stanford.edu/~jurafsky/slp3/2.pdf
 you can google a video of any topic if you have any doubt otherwise it is very intuitive
+also go through https://www.cse.iitb.ac.in/~cs626/2022/Lectures/1-cs626-intro-27jul22.pdf for simple introduction..
 
 ## Day 1: NLP Introduction + Words and Corpora
 
