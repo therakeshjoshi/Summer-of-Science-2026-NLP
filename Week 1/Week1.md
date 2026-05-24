@@ -1,13 +1,6 @@
 
 # Week 1: Introduction to NLP & Text Preprocessing & Simple NLP Pipeline
 
-## Week Objective
-By the end of Week 1, you should be able to:
-- Understand the scope and applications of NLP
-- Build a complete text preprocessing pipeline
-- Clean noisy text using regular expressions
-- Preprocess a real dataset (IMDB reviews / tweets)
-- Prepare data for future NLP models
 
 ---
 
