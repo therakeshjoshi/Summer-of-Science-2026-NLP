@@ -1,5 +1,5 @@
 # Summer-of-Science-2026
-Tentative Roadmap
+Tentative Roadmap \\
 Week 1: Introduction to NLP & Text Preprocessing & Simple NLP Pipeline 
 Week 2: Text Representation: From BoW to TF-IDF
 Week 3: Word Embeddings 
