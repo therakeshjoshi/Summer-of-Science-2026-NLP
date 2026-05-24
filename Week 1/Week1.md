@@ -1,255 +1,668 @@
+# Week 1: Introduction to NLP, Text Preprocessing, Words & Tokens, Regex and Simple NLP Pipeline (Updated)
 
-# Week 1: Introduction to NLP & Text Preprocessing & Simple NLP Pipeline
+## Week Objective
 
+By the end of Week 1 you should be able to:
+
+- Understand NLP applications and scope
+- Understand words, tokens, vocabulary and corpora
+- Build preprocessing pipelines
+- Use regular expressions for cleaning
+- Understand morphology and tokenization
+- Understand Unicode and UTF‑8
+- Perform preprocessing on real datasets
+- Gain intuition for future subword tokenization and LLM pipelines
 
 ---
 
-## Day 1: Introduction to NLP
 
-### Topics
-#### What is NLP?
-Natural Language Processing (NLP) is a branch of AI that enables computers to understand, interpret, process, and generate human language.
 
-### NLP Pipeline Overview
-Raw Text → Cleaning → Tokenization → Feature Extraction → Model → Prediction
 
-### Major Applications
+Watch these lectures during Week 1:
+
+1. Regular Expressions
+2. Regular Expression Substitutions
+3. Words and Corpora
+4. Word Tokenization
+5. Byte Pair Encoding
+6. Word Normalization
+
+Suggested sequence:
+
+Day 1:
+- Words and Corpora
+- NLP Introduction
+
+Day 2:
+- Word Tokenization lecture
+
+Day 3:
+- Regular Expressions + substitutions
+
+Day 4:
+- Word Normalization
+
+Day 5:
+- Unicode + Encoding notes
+
+Day 6:
+- Byte Pair Encoding overview
+
+Day 7:
+- Mini project
+
+Extra practical videos:
+- Krish Naik NLP preprocessing playlist
+- spaCy tutorials
+- NLTK preprocessing tutorials
+
+---
+
+# Day 1: Introduction to NLP + Words and Corpora
+
+## What is NLP?
+
+Natural Language Processing enables machines to:
+
+- Understand language
+- Process text
+- Generate language
+- Extract information
+
+Applications:
+
 1. Search Engines
-2. Machine Translation
-3. Chatbots and Virtual Assistants
-4. Text Summarization
+2. Translation
+3. Chatbots
+4. Summarization
 5. Sentiment Analysis
-6. Spam Detection
-7. Question Answering
-8. Information Retrieval
-9. Recommendation Systems
-10. Speech Systems
+6. QA Systems
+7. Recommendation Systems
+8. Speech Recognition
 
-### Theory Tasks
-- Difference between NLP, NLU and NLG
-- Structured vs Unstructured Text
-- Challenges:
-  - Ambiguity
-  - Context dependence
-  - Polysemy
-  - Sarcasm
-  - Domain adaptation
+---
 
-### Practical
-Install:
-```bash
-pip install nltk spacy pandas regex scikit-learn matplotlib
-python -m nltk.downloader all
-python -m spacy download en_core_web_sm
+## Words vs Tokens
+
+Sentence:
+
+They picnicked by the pool then lay back on the grass and looked at the stars
+
+Concepts:
+
+Type:
+Distinct vocabulary item
+
+Token:
+Actual occurrence in text
+
+Example:
+
+14 Types
+
+16 Tokens
+
+Study:
+
+- Vocabulary size |V|
+- Number of instances N
+- Corpus statistics
+- Vocabulary growth
+
+Mini task:
+
+Compute:
+
+```python
+len(set(tokens))
+len(tokens)
 ```
 
 ---
 
-## Day 2: Text Preprocessing Pipeline
+## Word Problems in NLP
 
-### Step 1: Lowercasing
+Questions:
+
+1. Is "I'm" one word or two?
+2. Should punctuation be tokens?
+3. Are “They” and “they” same?
+4. What about speech fillers?
+
 Example:
-"Machine Learning IS FUN"
-→ machine learning is fun
 
-### Step 2: Tokenization
-Sentence:
-"I love NLP"
+uh
+um
+main-
 
-Tokens:
-["I", "love", "NLP"]
+---
 
-Types:
-- Word tokenization
-- Sentence tokenization
-- Subword tokenization
-- Character tokenization
+# Day 2: Tokenization and Text Preprocessing
+
+## NLP Pipeline
+
+Raw Text
+
+↓
+
+Cleaning
+
+↓
+
+Normalization
+
+↓
+
+Tokenization
+
+↓
+
+Stopword Removal
+
+↓
+
+Lemmatization
+
+↓
+
+Final Corpus
+
+---
+
+## Tokenization Types
+
+1. Word tokenization
+2. Sentence tokenization
+3. Character tokenization
+4. Subword tokenization
 
 Libraries:
-- NLTK
+
+- nltk
 - spaCy
 
 Practice:
-Implement both NLTK and spaCy tokenizers.
+
+Implement:
+
+```python
+from nltk.tokenize import word_tokenize
+from nltk.tokenize import sent_tokenize
+```
 
 ---
 
-## Day 3: Stopword Removal and Text Cleaning
+## Tokenization Across Languages
 
-### Stopwords
-Examples:
-the, is, am, are, was, in, on
+English:
 
-Task:
-Remove stopwords and compare outputs.
+hello world
 
-### Noise Removal
+Chinese:
+
+姚明进入总决赛
+
+Questions:
+
+3 words?
+
+5 words?
+
+7 words?
+
+Discussion:
+
+- Chinese segmentation
+- Japanese tokenization
+- Thai spacing issues
+
+---
+
+## Too Many Words Problem
+
+Vocabulary grows continuously.
+
+Study:
+
+Heaps Law:
+
+|V| = kN^b
+
+where:
+
+V = vocabulary size
+
+N = corpus size
+
+Reason:
+
+Unknown words always exist.
+
+---
+
+# Day 3: Regex + Text Cleaning
+
+## Regex Basics
+
+Patterns:
+
+Digits:
+
+```python
+\d
+```
+
+Characters:
+
+```python
+\w
+```
+
+Whitespace:
+
+```python
+\s
+```
+
+Beginning:
+
+```python
+^
+```
+
+End:
+
+```python
+$
+```
+
+---
+
+## Regex Tasks from Video
+
+Find:
+
+the
+
+Observe:
+
+the
+
+other
+
+there
+
+blithe
+
+Understand substring matching.
+
+---
+
+## Cleaning Tasks
+
 Remove:
+
 - URLs
-- HTML tags
+- HTML
 - Emojis
 - Numbers
 - Extra spaces
-- Special characters
-
-Example:
-Input:
-"Great movie!!! Visit https://abc.com :)"
-
-Output:
-"great movie"
-
----
-
-## Day 4: Stemming and Lemmatization
-
-### Stemming
-Words:
-playing → play
-studies → studi
-
-Algorithms:
-- Porter Stemmer
-- Snowball Stemmer
-- Lancaster Stemmer
-
-### Lemmatization
-playing → play
-better → good
-
-Compare:
-| Word | Stem | Lemma |
-|------|------|-------|
-| running | run | run |
-| studies | studi | study |
-| better | better | good |
-
-Exercise:
-Create comparison table for 50 words.
-
----
-
-## Day 5: Regular Expressions
-
-### Regex Basics
-Patterns:
-- Digits: \d
-- Characters: \w
-- Spaces: \s
-- Start: ^
-- End: $
+- Mentions
+- Hashtags
 
 Examples:
-Emails:
+
+Email:
+
 ```python
 r'[\w\.-]+@[\w\.-]+'
 ```
 
-URLs:
+URL:
+
 ```python
 r'https?://\S+'
 ```
 
-Hashtags:
+Hashtag:
+
 ```python
 r'#\w+'
 ```
 
-Mentions:
+Mention:
+
 ```python
 r'@\w+'
 ```
 
-Mini Tasks:
-1. Remove links
-2. Extract hashtags
-3. Remove emojis
-4. Clean tweets
+Mini Exercise:
+
+Clean tweets dataset.
 
 ---
 
-## Day 6: Build Simple NLP Pipeline
+# Day 4: Morphology + Normalization
 
-Pipeline:
-1. Raw text input
-2. Lowercase
-3. Regex cleaning
+## Morphemes
+
+Definition:
+
+Smallest meaning unit.
+
+Examples:
+
+fox
+
+1 morpheme
+
+cats
+
+cat + s
+
+worked
+
+work + ed
+
+carefully
+
+care + ful + ly
+
+---
+
+## Types of Morphemes
+
+### Root
+
+Main meaning
+
+Examples:
+
+work
+
+glass
+
+care
+
+### Affixes
+
+Add meaning
+
+-ed
+
+-es
+
+-ly
+
+-ful
+
+---
+
+## Inflectional Morphology
+
+Examples:
+
+worked
+
+past tense
+
+cats
+
+plural
+
+reads
+
+third person
+
+---
+
+## Derivational Morphology
+
+care
+
+↓
+
+careful
+
+↓
+
+carefully
+
+Changes word category.
+
+---
+
+## Clitics
+
+Examples:
+
+I've
+
+teacher's
+
+French l'
+
+Arabic prefixes
+
+---
+
+## Normalization
+
+Case folding:
+
+Woodchuck
+
+↓
+
+woodchuck
+
+Study:
+
+- Lowercasing
+- Normalization
+- OOV handling
+- Lemmatization
+- Stemming
+
+---
+
+# Day 5: Unicode and UTF‑8
+
+## Why ASCII was insufficient
+
+Problems:
+
+Spanish:
+
+Señor
+
+Chinese
+
+Hindi
+
+Marathi
+
+Emoji support
+
+---
+
+## Unicode
+
+Unicode:
+
+Universal character representation
+
+Supports:
+
+- 150k+ characters
+- Multiple scripts
+- Emojis
+- Symbols
+
+Code point:
+
+Example:
+
+a
+
+U+0061
+
+---
+
+## UTF‑8 Encoding
+
+ASCII:
+
+1 byte
+
+European languages:
+
+2 bytes
+
+CJK:
+
+3 bytes
+
+Rare symbols:
+
+4 bytes
+
+Advantages:
+
+- Efficient
+- Backward compatible
+- Self synchronizing
+
+---
+
+## Python Unicode
+
+Study:
+
+```python
+len("नमस्ते")
+```
+
+Read files:
+
+```python
+open(
+file,
+encoding="utf-8"
+)
+```
+
+---
+
+# Day 6: Subword Tokenization Preview
+
+Why words fail:
+
+1. No spaces in some languages
+2. Vocabulary explosion
+3. Unknown words
+
+---
+
+## Byte Pair Encoding
+
+Algorithm:
+
+Repeat:
+
+Find most frequent pair
+
+Merge
+
+Add token
+
+Repeat k times
+
+Example:
+
+A B C A B
+
+↓
+
+AB C AB
+
+↓
+
+CAB
+
+Applications:
+
+- GPT
+- BERT tokenizers
+- LLM preprocessing
+
+Do NOT master now.
+
+Only intuition.
+
+Detailed study:
+
+Week 3 onwards.
+
+---
+
+# Day 7: Mini Project
+
+Dataset:
+
+Choose one:
+
+- IMDB reviews
+- Tweets
+- SMS spam
+
+Tasks:
+
+1. Load dataset
+2. Regex cleaning
+3. Lowercase
 4. Tokenization
 5. Stopword removal
 6. Lemmatization
-7. Final processed output
-
-Pseudo Code:
-```python
-text
-↓
-clean()
-↓
-tokenize()
-↓
-remove_stopwords()
-↓
-lemmatize()
-↓
-processed_text
-```
-
-Dataset Options:
-- IMDB Movie Reviews
-- Twitter sentiment data
-- SMS Spam dataset
-
----
-
-## Day 7: Mini Project
-
-### Exercise
-Clean and preprocess IMDB reviews.
-
-Tasks:
-- Load dataset
-- Remove noise
-- Tokenize
-- Remove stopwords
-- Lemmatize
-- Save processed corpus
+7. Vocabulary analysis
+8. Most frequent words
+9. Save cleaned corpus
 
 Deliverables:
-- Jupyter notebook
-- Clean CSV
-- Documentation
 
-Suggested Evaluation:
-- Before vs after cleaning examples
-- Vocabulary size reduction
-- Most common words
+- Notebook
+- CSV
+- Markdown report
+- Vocabulary plots
 
 ---
 
-## Extra Concepts
+# Reading Material
 
-Study:
-- Unicode handling
-- UTF-8 encoding
-- OOV words
-- Sentence segmentation
-- Text normalization
-- Case folding
+Primary:
 
----
+Jurafsky and Martin
 
-## Reading Material
-
-Primary Reading:
-Jurafsky & Martin:
 Speech and Language Processing
+
 Chapter 2
 
+Focus:
+
+- Words
+- Tokens
+- Morphemes
+- Unicode
+- Tokenization
+- Normalization
+- BPE
+
 Supplementary:
-1. NLTK Documentation
-2. spaCy Documentation
-3. Scikit-learn text tutorials
+
+1. NLTK docs
+2. spaCy docs
+3. HuggingFace tokenizer docs
+4. CS124 lecture notes
 
 ---
-
 
